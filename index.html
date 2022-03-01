@@ -9,11 +9,15 @@
     <script type="text/babel">
         const root = document.querySelector("#root");
         function App(){
-            const [counter, modifier] = React.useState(counter, countUp);
+            const [counter, setCounter] = React.useState(0);
+            const onClick = () => {
+                setCounter(counter + 1);
+                // counter = 987;
+            }
             return(
                 <div>
                     <h3>Total clicks: {counter}</h3>
-                    <button>Click Me</button>
+                    <button onClick={onClick}>Click Me</button>
                 </div>
             );
         }
