@@ -7,81 +7,25 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        function MinutesToHours(){
-            const [amount, setAmount] = React.useState(0);
-            const [inverted, setInverted] = React.useState(false);
-            const onChange = (event) => {
-                setAmount(event.target.value);
-            };
-            const reset = () => {
-                setAmount(0);
-            };
-            const onFlip = () => {
-                reset();
-                setInverted((current) => !current);
-            }
+        function Btn({text, big}){
+            console.log(text, big);
             return(
-                <div>
-                    <h1 className="hi">Super Converter</h1>
-                    <div>
-                        <label htmlFor="amount">Minutes</label>
-                        <input value={inverted ? amount * 60 : amount} id="amount" placeholder="Minutes" type="number" onChange={onChange} disabled={inverted === true} />
-                    </div>
-                    <div>
-                        <label htmlFor="hours">Hours</label>
-                        <input value={inverted ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={inverted === false} />
-                    </div>
-                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
-                    <button onClick={reset}>Reset</button>
-                </div>
-            );
-        }
-
-        function KmToMiles(){
-            const [amount, setAmount] = React.useState(0);
-            const [inverted, setInverted] = React.useState(false);
-            const onChange = (event) => {
-                setAmount(event.target.value);
-            };
-            const reset = () => {
-                setAmount(0);
-            };
-            const onFlip = () => {
-                reset();
-                setInverted((current) => !current);
-            }
-            return(
-                <div>
-                    <h3>KM 2 M </h3>
-                    <div>
-                        <label htmlFor="amount">Km</label>
-                        <input value={inverted ? amount * 0.621371 : amount} id="amount" placeholder="Minutes" type="number" onChange={onChange} disabled={inverted === true} />
-                    </div>
-                    <div>
-                        <label htmlFor="hours">Miles</label>
-                        <input value={inverted ? amount : Math.round(amount / 0.621371)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={inverted === false} />
-                    </div>
-                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
-                    <button onClick={reset}>Reset</button>
-                </div>
+                <button style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: "0px",
+                    borderRadius: "10px",
+                    fontSize: big? 18 : 16
+                }}>{text}</button>
             )
         }
 
         function App(){
-            const [index, setIndex] = React.useState("x");
-            const onSelect = (event) => {
-                setIndex(event.target.value);
-            }
             return(
                 <div>
-                    <h1 className="hi">Super Converter</h1>
-                    <select value={index} onChange={onSelect}>
-                        <option value="x">Select your units</option>
-                        <option value="0">Minutes & Hours</option>
-                        <option value="1">Km & Miles</option>
-                    </select>
-                    {index === "0" ? <MinutesToHours /> : null}
-                    {index === "1" ? <KmToMiles /> : null}
+                    <Btn text="Save Changes" big={true}/>
+                    <Btn text="Continue" big={false}/>
                 </div>
             );
         }
