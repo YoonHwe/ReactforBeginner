@@ -1,18 +1,15 @@
-# Getting Started with Create React App
+# ReactJS로 영화 웹 서비스 만들기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## CH2. THE BASICS OF REACT
 
-## Available Scripts
+### Elemet 생성
+React.createElement("태그명", property(id/class, style, eventListener...), innerText)
+### React | ReactDOM
+React: 어플리케이션이 interactive하도록 만들어주는 라이브러리(엔진과 유사)
+React-Dom: 모든 React element들을 HTML body에 두게 해주는 라이브러리 또는 패키지 => ReactDOM.render(element명(담을 것), HTML body(담을 위치))
+### EventListener
+ex) onMouseEnter: () => console.log("")
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
