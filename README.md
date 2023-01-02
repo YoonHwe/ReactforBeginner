@@ -33,7 +33,15 @@ ReactDOM.render(<Container />, root);
 ### ReactJS의 특징
 ReRender하는 것은 오로지 바뀐 요소들 => Interactive
 
-### React.useState(0)
+### React.useState(val)
 ['init_val(초기값)' , 'modifier(값을 바꾸는 함수)']
+init_val = val(매개변수)
 modifier: 값 update + Re-render
 ex) const [counter, modifier] = React.useState(0);
+
+### setState
+setState(counter+1) 보다는 setState((current) => current+1)이 더 안전함
+
+### event 접근
+매개변수 event 내 nativeEvent
+

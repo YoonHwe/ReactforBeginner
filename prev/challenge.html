@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Challenge</title>
+    
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const KMtoMiles = () => {
+        const [val, modifier] = React.useState(0);
+        const [mode, setMode] = React.useState(true);
+        const changeMode = () => {
+            reset();
+            setMode((cur) => !cur);
+        }
+        const changeVal = (event) => {
+            modifier((cur) => event.target.value);
+        }
+        const reset = () => {
+            modifier(0);
+        }
+        return (
+            <div>
+                <h1>{mode ? "KM TO MILES" : "MILES TO KM"}</h1>
+                <div>
+                    <label htmlFor="km">KM: </label>
+                    <input id="km" type="number" onChange={changeVal} value={mode ? val : Math.round(val / 0.37)} placeholder="KM" disabled={!mode}/>
+                </div>
+                <div>
+                    <label htmlFor="miles">MILES: </label>
+                    <input id="miles" type="number" onChange={changeVal} value={mode ? Math.round(0.37*val) : val} placeholder="MILES" disabled={mode}/>
+                </div>
+                <button onClick={reset}>reset</button>
+                <button onClick={changeMode}>change mode</button>
+            </div>
+        )
+    };
+
+    const WontoDollar = () => {
+        const [val, modifier] = React.useState(0);
+        const [mode, setMode] = React.useState(true);
+        const changeVal = (event) => {
+            modifier((cur) => event.target.value);
+        }
+        const changeMode = () => {
+            resetVal();
+            setMode((cur) => !cur);
+        }
+        const resetVal = () => {
+            modifier(0);
+        }
+        return (
+            <div>
+                <h1>{mode ? "WON TO DOLLARS" : "DOLLARS TO WON"}</h1>
+                <div>
+                    <label htmlFor="won">WON: </label>
+                    <input onChange={changeVal} id="won" placeholder="WON" value={mode ? val : val * 1000} disabled={!mode}/>
+                </div>
+                <div>
+                    <label htmlFor="dollar">DOLLAR: </label>
+                    <input onChange={changeVal} id="dollar" placeholder="DOLLAR" value={mode ? val / 1000 : val} disabled={mode}></input>
+                </div>
+                <button onClick={resetVal}>reset</button>
+                <button onClick={changeMode}>change mode</button>
+            </div>
+        )
+    }
+    const App = () => {
+        const [converter, setConverter] = React.useState("1");
+        const changeConverter = (event) => {
+            console.log(event.target.value);
+            setConverter((cur) => event.target.value)
+        }
+        return (
+            <div>
+                <h1>Super Converter</h1>
+                <select value={converter} onChange={changeConverter}>
+                    <option readOnly>Select Converter</option>
+                    <option value="1">KMToMiles</option>
+                    <option value="2">WonToDollar</option>
+                </select>
+                
+                {converter === "1" ? <KMtoMiles/> : null}
+                {converter === "2" ? <WontoDollar/> : null}
+            </div>
+        )
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
