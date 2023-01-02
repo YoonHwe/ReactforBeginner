@@ -45,3 +45,23 @@ setState(counter+1) 보다는 setState((current) => current+1)이 더 안전함
 ### event 접근
 매개변수 event 내 nativeEvent
 
+## CH4. PROPS
+
+### PROPS란?
+부모 컴포넌트에서 자식 컴포넌트로 보내는 데이터(기본값 적용 가능)
+
+** Custom Component에 onClick={...} 달아 놓으면, 이것은 prop일 뿐 EventListener가 아니다. ex) <Btn text={value} onClick={changeValue}/>
+=> 직접 element 안에 달아야 한다
+
+### Memo
+부모 컴포넌트의 state가 변경되어 자식 컴포넌트들이 다시 렌더링될 때, 렌더링이 불필요한 컴포넌트에 대해 다시 렌더링되는 것을 막을 수 있음 by React Memo
+ex) const MemorizedBtn = React.memo(Btn)
+=> 필요한 것만 re-render해서 성능 개선 가능
+
+### PropTypes
+props가 어떤 모양, 어떤 타입을 받아야 하는지를 특정할 수 있음
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+ex) Btn.propTypes = {
+    text: PropTypes.string.isRequired,
+    fontSize: PropTypes.number
+}

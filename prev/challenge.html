@@ -77,7 +77,7 @@
         )
     }
     const App = () => {
-        const [converter, setConverter] = React.useState("1");
+        const [converter, setConverter] = React.useState("0");
         const changeConverter = (event) => {
             console.log(event.target.value);
             setConverter((cur) => event.target.value)
@@ -86,11 +86,11 @@
             <div>
                 <h1>Super Converter</h1>
                 <select value={converter} onChange={changeConverter}>
-                    <option readOnly>Select Converter</option>
+                    <option value="0">Select Converter</option>
                     <option value="1">KMToMiles</option>
                     <option value="2">WonToDollar</option>
                 </select>
-                
+                {converter === "0" ? <p>Please Select Converter</p> : null}
                 {converter === "1" ? <KMtoMiles/> : null}
                 {converter === "2" ? <WontoDollar/> : null}
             </div>
